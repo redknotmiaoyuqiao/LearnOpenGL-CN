@@ -12,10 +12,10 @@
 
 !!! Important
 
-IBL or image based lighting is a collection of techniques to light objects, not by direct analytical lights as in the previous tutorial, but by treating the surrounding environment as one big light source. This is generally accomplished by manipulating a cubemap environment map (taken from the real world or generated from a 3D scene) such that we can directly use it in our lighting equations: treating each cubemap pixel as a light emitter. This way we can effectively capture an environment's global lighting and general feel, giving objects a better sense of belonging in their environment.
+IBL <def>基于图像的光照技术</def>(image based lighting) 是一种使用collection来照亮物体的技术，和从前课程中直接分析光照是不一样的，但是我们仍然可以将环绕周围的环境看作是一个大的光源。这通常使用一个 cubemap 的环境贴图（从现实世界中或从一个三维场景生成）我们可以使用我们的照明方程：处理每个立方体贴图像素的发光体。这样，我们就可以有效地捕捉环境的全局光照和一种自然的感觉。给予对象一个更好地融入周围的环境中。
 
-IBL <def>基于图像的光照技术</def>(image based lighting) 是一种使用collection来照亮物体的技术，和从前课程中直接分析光照是不一样的，但是我们仍然可以将环绕周围的环境看作是一个大的光源。
+由于基于图像的照明算法是捕获环境的光照，它的输入通常是更加精细的环境光，甚至是较为粗略的全局光照（GI）。当我们使用环境光照时，IBL 可以使我们的 PBR 材质更加接近真实物理材质。
 
-As image based lighting algorithms capture the lighting of some (global) environment its input is considered a more precise form of ambient lighting, even a crude approximation of global illumination. This makes IBL interesting for PBR as objects look significantly more physically accurate when we take the environment's lighting into account.
+开始介绍IBL进入我们的PBR系统让我们再看一眼的反射方程：
 
-To start introducing IBL into our PBR system let's again take a quick look at the reflectance equation:
+Lo(p,ωo)=∫Ω(kdcπ+ksDFG4(ωo⋅n)(ωi⋅n))Li(p,ωi)n⋅ωidωi
